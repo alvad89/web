@@ -1,0 +1,121 @@
+body {
+    background: #333;
+    font: 300 65.1% "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
+    ;
+}
+#holder {
+    height:  480px;
+    left: 50%;
+    margin: -240px 0 0 -320px;
+    position: absolute;
+    top: 50%;
+    width: 640px;
+}
+#copy {
+    bottom: 0;
+    font: 300 .7em "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
+    position: absolute;
+    right: 1em;
+    text-align: right;
+}
+#copy a {
+    color: #fff;
+}
+h1{
+	font-size: 32px;
+	color: #fff;
+}
+h4{	
+	font-size:16px;
+	color: #fff;
+}
+h3{
+    color: #fff;
+    font-size: 24px;
+}
+#formRadio{
+    height: 50px;
+    width: 100px;
+    text-align: center;
+}
+#headerDiag{
+    position: absolute;
+    padding-top: 30px;
+    font-size: 28px;
+    color: #fff;
+    top: 47%;
+    margin: -200px 0 0 320px;
+}
+
+.dailyArchiv {
+    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background-color:#ededed;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    color:#777777;
+    font-family:arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:1px 1px 0px #ffffff;
+}.dailyArchiv:hover {
+     background-color:#ffffff;
+ }.dailyArchiv:active {
+      position:relative;
+      top:1px;
+  }
+
+#formDailyArchive{
+position:static;
+    float: right;
+    padding-top: 100px;
+    padding-right: 0px;
+    clear: both;
+		
+}
+
+#buttonDaily{
+float: right;    
+position: relative;
+    
+    padding-top: 1px;
+    clear: both;
+  }
+
+#formHourlyArchive{
+position:static;
+    float: right;
+    padding-top: 30px;
+    padding-right: 0px;
+    clear: both;
+}
+#buttonHourly{
+    float: right;
+    padding-top: 1px;
+    padding-right: 0px;
+    clear: both;
+
+
+}
+#tableButton{
+    position:relative;
+    float: left;
+    padding-top: 130px;
+    padding-left: 270px;
+
+}
+#graphButton{
+    position: relative;
+    float: left;
+    padding-top: 130px;
+    padding-left: 2px;
+	
+}
+
+
