@@ -11,7 +11,16 @@ body {
     top: 50%;
     width: 640px;
 }
-#copy {
+#tableHolder {
+	font: 300 100%;
+    height:  480px;
+    left: 50%;
+    margin: -200px 0 0 -350px;
+    position: absolute;
+    top: 50%;
+    width: 640px;
+}
+/*#copy {
     bottom: 0;
     font: 300 .7em "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif;
     position: absolute;
@@ -20,7 +29,7 @@ body {
 }
 #copy a {
     color: #fff;
-}
+}*/
 h1{
 	font-size: 32px;
 	color: #fff;

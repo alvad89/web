@@ -12,11 +12,23 @@
     <script src="scripts/popup.js"></script>
     <script src="scripts/jquery-1.9.0.js"></script>
     <script src="scripts/jquery.ui.core.js"></script>
+<script src="scripts/jquery.dataTables.js"></script>
     <script src="scripts/jquery.ui.datepicker.js"></script>
     <script src="scripts/jquery.ui.widget.js"></script>
     <script src="scripts/analytics.js"></script>
-    <style type="text/css" media="screen">
+	  <script src="scripts/script.js"></script>
+	  
+
+
+    <style type="text/css" media="screen" >
         #holder {
+	//display:none;
+        height: 400px;
+        margin: -80px 0 0 -380px;
+        width: 800px;
+        }
+	#tableHolder{
+	display: none;
         height: 400px;
         margin: -80px 0 0 -380px;
         width: 800px;
@@ -133,12 +145,13 @@ for(var i=0;i<31;i++){
         <td>33</td>
 
     </tr>
+
     </tbody>
 </table>
-<div id="holder"><p></p>
-</div>
-<div id="tableButton"><a href="#" class="dailyArchiv">Таблица</a></div>
-<div id="graphButton"><a href="#" class="dailyArchiv">График</a></div>
+<div id="holder"><p></p></div>
+<div id="tableHolder"><p></p></div>
+<div id="tableButton"><a href="#" class="dailyArchiv" onclick="isTable()">Таблица</a></div>
+<div id="graphButton"><a href="#" class="dailyArchiv" onclick="isGraph()">График</a></div>
 
 
 

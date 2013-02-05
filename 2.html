@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Добро пожаловать!</title>
+    
+	<link rel="stylesheet" href="css/stylesheet.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="screen">
+    <link rel=stylesheet href="css/jquery.ui.datepicker.css" type="text/css" media="screen">
+<link rel=stylesheet href="css/demo_table.css" type="text/css" media="screen">
+
+
+    <script src="scripts/raphael.js"></script>
+    <script src="scripts/popup.js"></script>
+    <script src="scripts/jquery-1.9.0.js"></script>
+    <script src="scripts/jquery.ui.core.js"></script>
+<script src="scripts/jquery.dataTables.js"></script>
+    <script src="scripts/jquery.ui.datepicker.js"></script>
+    <script src="scripts/jquery.ui.widget.js"></script>
+    <script src="scripts/analytics.js"></script>
+	  <script src="scripts/script.js"></script>
+	  
+
+
+    <style type="text/css" media="screen" >
+        #holder {
+	//display:none;
+        height: 400px;
+        margin: -80px 0 0 -380px;
+        width: 800px;
+        }
+	#tableHolder{
+	display: none;
+        height: 800px;
+        margin: -60px 0 0 -335px;
+        width: 740px;
+        }
+
+			.dataTables_info { padding-top: 0; }
+			.dataTables_paginate { padding-top: 0; }
+			.css_right { float: right; }
+			#example_wrapper .fg-toolbar { font-size: 1.8em }
+			#theme_links span { float: left; padding: 2px 10px; }
+			#example_wrapper { -webkit-box-shadow: 2px 2px 6px #666; box-shadow: 2px 2px 6px #666; border-radius: 5px; }
+			#example tbody {
+				font-size: 18px;
+				border-left: 1px solid #AAA;
+				border-right: 1px solid #AAA;
+			}
+			#example thead th:first-child { border-left: 1px solid #AAA; }
+			#example thead th:last-child { border-right: 1px solid #AAA; }
+
+    </style>
+       
+</head>
+<body>
+<h1>ООО "НОВАТЭК - Челябинск"</h1>
+<h3>Система телеметрии</h3>
+		
+<div id="listEnterprise">
+<script type="text/javascript">
+    //создаем div для заполнения предприятиями
+var node = document.getElementById("listEnterprise");
+for(i=0; i<35; i++){
+newnode = document.createElement('div');
+newnode.id = 'enterpr'+i;
+//newnode.className='enterprise';
+//newnode.textContent='Enterprise '+i;
+node.appendChild(newnode);}
+
+    //создаем ссылку на каждый div
+var links = [
+
+    {text:'Enterprise',url:'#'}
+];
+var div = document.getElementById('enterpr0');
+
+for(var i=0;i<31;i++){
+    var anchor = document.createElement('a');
+    anchor.className='enterprise';
+    anchor.href = links[0].url;
+    anchor.innerHTML = links[0].text +" "+ i;
+    div.insertBefore(anchor, null);
+}
+</script></div>
+
+<form name="DailyArchive" method="get" action="" id="formDailyArchive">C:<input type="text" name="beginDate" id="datepickerBegin" size="9" />По<input type="text" name="endDate" id="datepickerEnd" size="9" /></form>
+<script>
+    $(function() {
+    $( "#datepickerBegin" ).datepicker();
+    $( "#datepickerEnd" ).datepicker();
+    });
+</script>
+<div id="buttonDaily"><a href="#" class="dailyArchiv">Суточные архивы</a></div><br><br>
+
+<form name="HourlyArchive" method="get" action="" id="formHourlyArchive">C:<input type="text" name="beginDate" id="datepickerBeginHourly" size="9" />По:<input type="text" name="endDate" id="datepickerEndHourly" size="9" /></form>
+<script>
+    $(function() {
+    $( "#datepickerBeginHourly" ).datepicker();
+    $( "#datepickerEndHourly" ).datepicker();
+    });
+</script>
+<div id="buttonHourly"><a href="#" class="dailyArchiv">Часовые архивы</a></div>
+
+<div id="titleEnterprise"><p>Enterprise</p></div>
+<div id="headerDiag"><p>Текущие данные за последние 24 часа</p></div>
+
+<div id="tableHolder"><table cellpadding="0" cellspacing="0" border="0" class="display" id="example" style="width:740px">
+	<thead>
+		<tr>
+			<th>Rendering engine</th>
+			<th>Browser</th>
+			<th>Platform(s)</th>
+			<th>Engine version</th>
+			<th>CSS grade</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="gradeX">
+			<td>Trident</td>
+			<td>Internet
+				 Explorer 4.0</td>
+			<td>Win 95+</td>
+			<td class="center">4</td>
+			<td class="center">X</td>
+		</tr>
+		<tr class="gradeC">
+			<td>Trident</td>
+			<td>Internet
+				 Explorer 5.0</td>
+			<td>Win 95+</td>
+			<td class="center">5</td>
+			<td class="center">C</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Trident</td>
+			<td>Internet
+				 Explorer 5.5</td>
+			<td>Win 95+</td>
+			<td class="center">5.5</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Trident</td>
+			<td>Internet
+				 Explorer 6</td>
+			<td>Win 98+</td>
+			<td class="center">6</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Trident</td>
+			<td>Internet Explorer 7</td>
+			<td>Win XP SP2+</td>
+			<td class="center">7</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Trident</td>
+			<td>AOL browser (AOL desktop)</td>
+			<td>Win XP</td>
+			<td class="center">6</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Firefox 1.0</td>
+			<td>Win 98+ / OSX.2+</td>
+			<td class="center">1.7</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Firefox 1.5</td>
+			<td>Win 98+ / OSX.2+</td>
+			<td class="center">1.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Firefox 2.0</td>
+			<td>Win 98+ / OSX.2+</td>
+			<td class="center">1.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Firefox 3.0</td>
+			<td>Win 2k+ / OSX.3+</td>
+			<td class="center">1.9</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Camino 1.0</td>
+			<td>OSX.2+</td>
+			<td class="center">1.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Camino 1.5</td>
+			<td>OSX.3+</td>
+			<td class="center">1.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Netscape 7.2</td>
+			<td>Win 95+ / Mac OS 8.6-9.2</td>
+			<td class="center">1.7</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Netscape Browser 8</td>
+			<td>Win 98SE+</td>
+			<td class="center">1.7</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Netscape Navigator 9</td>
+			<td>Win 98+ / OSX.2+</td>
+			<td class="center">1.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.0</td>
+			<td>Win 95+ / OSX.1+</td>
+			<td class="center">1</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.1</td>
+			<td>Win 95+ / OSX.1+</td>
+			<td class="center">1.1</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.2</td>
+			<td>Win 95+ / OSX.1+</td>
+			<td class="center">1.2</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.3</td>
+			<td>Win 95+ / OSX.1+</td>
+			<td class="center">1.3</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.4</td>
+			<td>Win 95+ / OSX.1+</td>
+			<td class="center">1.4</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.5</td>
+			<td>Win 95+ / OSX.1+</td>
+			<td class="center">1.5</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.6</td>
+			<td>Win 95+ / OSX.1+</td>
+			<td class="center">1.6</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.7</td>
+			<td>Win 98+ / OSX.1+</td>
+			<td class="center">1.7</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Mozilla 1.8</td>
+			<td>Win 98+ / OSX.1+</td>
+			<td class="center">1.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Seamonkey 1.1</td>
+			<td>Win 98+ / OSX.2+</td>
+			<td class="center">1.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Gecko</td>
+			<td>Epiphany 2.20</td>
+			<td>Gnome</td>
+			<td class="center">1.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Webkit</td>
+			<td>Safari 1.2</td>
+			<td>OSX.3</td>
+			<td class="center">125.5</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Webkit</td>
+			<td>Safari 1.3</td>
+			<td>OSX.3</td>
+			<td class="center">312.8</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Webkit</td>
+			<td>Safari 2.0</td>
+			<td>OSX.4+</td>
+			<td class="center">419.3</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Webkit</td>
+			<td>Safari 3.0</td>
+			<td>OSX.4+</td>
+			<td class="center">522.1</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Webkit</td>
+			<td>Google Chrome 1.0</td>
+			<td>Win XP+</td>
+			<td class="center">525</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Webkit</td>
+			<td>OmniWeb 5.5</td>
+			<td>OSX.4+</td>
+			<td class="center">420</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Webkit</td>
+			<td>iPod Touch / iPhone</td>
+			<td>iPod</td>
+			<td class="center">420.1</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Webkit</td>
+			<td>S60</td>
+			<td>S60</td>
+			<td class="center">413</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Opera 7.0</td>
+			<td>Win 95+ / OSX.1+</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Opera 7.5</td>
+			<td>Win 95+ / OSX.2+</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Opera 8.0</td>
+			<td>Win 95+ / OSX.2+</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Opera 8.5</td>
+			<td>Win 95+ / OSX.2+</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Opera 9.0</td>
+			<td>Win 95+ / OSX.3+</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Opera 9.2</td>
+			<td>Win 88+ / OSX.3+</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Opera 9.5</td>
+			<td>Win 88+ / OSX.3+</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Opera for Wii</td>
+			<td>Wii</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Nokia N800</td>
+			<td>N800</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Presto</td>
+			<td>Nintendo DS browser</td>
+			<td>Nintendo DS</td>
+			<td class="center">8.5</td>
+			<td class="center">C/A</td>
+		</tr>
+		<tr class="gradeC">
+			<td>KHTML</td>
+			<td>Konqureror 3.1</td>
+			<td>KDE 3.1</td>
+			<td class="center">3.1</td>
+			<td class="center">C</td>
+		</tr>
+		<tr class="gradeA">
+			<td>KHTML</td>
+			<td>Konqureror 3.3</td>
+			<td>KDE 3.3</td>
+			<td class="center">3.3</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeA">
+			<td>KHTML</td>
+			<td>Konqureror 3.5</td>
+			<td>KDE 3.5</td>
+			<td class="center">3.5</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeX">
+			<td>Tasman</td>
+			<td>Internet Explorer 4.5</td>
+			<td>Mac OS 8-9</td>
+			<td class="center">-</td>
+			<td class="center">X</td>
+		</tr>
+		<tr class="gradeC">
+			<td>Tasman</td>
+			<td>Internet Explorer 5.1</td>
+			<td>Mac OS 7.6-9</td>
+			<td class="center">1</td>
+			<td class="center">C</td>
+		</tr>
+		<tr class="gradeC">
+			<td>Tasman</td>
+			<td>Internet Explorer 5.2</td>
+			<td>Mac OS 8-X</td>
+			<td class="center">1</td>
+			<td class="center">C</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Misc</td>
+			<td>NetFront 3.1</td>
+			<td>Embedded devices</td>
+			<td class="center">-</td>
+			<td class="center">C</td>
+		</tr>
+		<tr class="gradeA">
+			<td>Misc</td>
+			<td>NetFront 3.4</td>
+			<td>Embedded devices</td>
+			<td class="center">-</td>
+			<td class="center">A</td>
+		</tr>
+		<tr class="gradeX">
+			<td>Misc</td>
+			<td>Dillo 0.8</td>
+			<td>Embedded devices</td>
+			<td class="center">-</td>
+			<td class="center">X</td>
+		</tr>
+		<tr class="gradeX">
+			<td>Misc</td>
+			<td>Links</td>
+			<td>Text only</td>
+			<td class="center">-</td>
+			<td class="center">X</td>
+		</tr>
+		<tr class="gradeX">
+			<td>Misc</td>
+			<td>Lynx</td>
+			<td>Text only</td>
+			<td class="center">-</td>
+			<td class="center">X</td>
+		</tr>
+		<tr class="gradeC">
+			<td>Misc</td>
+			<td>IE Mobile</td>
+			<td>Windows Mobile 6</td>
+			<td class="center">-</td>
+			<td class="center">C</td>
+		</tr>
+		<tr class="gradeC">
+			<td>Misc</td>
+			<td>PSP browser</td>
+			<td>PSP</td>
+			<td class="center">-</td>
+			<td class="center">C</td>
+		</tr>
+		<tr class="gradeU">
+			<td>Other browsers</td>
+			<td>All others</td>
+			<td>-</td>
+			<td class="center">-</td>
+			<td class="center">U</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<table id="data">
+    <tfoot>
+    <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+        <th>11</th>
+        <th>12</th>
+        <th>13</th>
+        <th>14</th>
+        <th>15</th>
+        <th>16</th>
+        <th>17</th>
+        <th>18</th>
+        <th>19</th>
+        <th>19</th>
+        <th>20</th>
+        <th>22</th>
+        <th>23</th>
+        <th>24</th>
+
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr>
+        <td>23</td>
+        <td>25</td>
+        <td>27</td>
+        <td>25</td>
+        <td>54</td>
+        <td>59</td>
+        <td>79</td>
+        <td>47</td>
+        <td>27</td>
+        <td>44</td>
+        <td>44</td>
+        <td>51</td>
+        <td>56</td>
+        <td>83</td>
+        <td>12</td>
+        <td>91</td>
+        <td>52</td>
+        <td>12</td>
+        <td>40</td>
+        <td>44</td>
+        <td>60</td>
+        <td>29</td>
+        <td>22</td>
+        <td>33</td>
+
+    </tr>
+
+    </tbody>
+</table>
+<div id="holder"><p></p></div>
+<!--<div id="tableHolder"><p></p></div>-->
+<div id="tableButton"><a href="#" class="dailyArchiv" onclick="isTable()">Таблица</a></div>
+<div id="graphButton"><a href="#" class="dailyArchiv" onclick="isGraph()">График</a></div>
+
+
+
+</body>
+</html>
